@@ -9,6 +9,7 @@ from src.quicksort import *
 from src.mergesort import *
 from src.o_n_square_sorting import *
 from src.timsort import *
+from src.treesort import TreeSort
 
 class TestAlgorithms(unittest.TestCase):
 
@@ -56,3 +57,9 @@ class TestAlgorithms(unittest.TestCase):
         timsort(arr)
         print(arr)
         self.assertEqual(arr, [10, 30, 40, 50, 70, 80, 90])
+    
+    def test_treesort(self):
+        items = ['M', 'J', 'S', 'B', 'N', 'Z', 'A']
+        treesort = TreeSort(items)
+        sorted = treesort.inorder()
+        self.assertEqual(sorted, ['A', 'B', 'J', 'M', 'N', 'S', 'Z'])
