@@ -13,4 +13,4 @@ def tripletSum(nums: list) -> [[list]]:
                 j -= 1
         return results
 
-print(threeSum( [-1, 0, 1, 2, -1, -4]))
+print(tripletSum( [-1, 0, 1, 2, -1, -4]))
