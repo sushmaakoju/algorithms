@@ -10,6 +10,12 @@ from src.mergesort import *
 from src.o_n_square_sorting import *
 from src.timsort import *
 from src.treesort import TreeSort
+from src.graph import Graph
+from src.depthfirstsearch import *
+from src.breadthfirstsearch import *
+from src.treenode import TreeNode
+from src.max_heapify import *
+from src.heapsort import *
 
 class TestAlgorithms(unittest.TestCase):
 
@@ -63,3 +69,64 @@ class TestAlgorithms(unittest.TestCase):
         treesort = TreeSort(items)
         sorted = treesort.inorder()
         self.assertEqual(sorted, ['A', 'B', 'J', 'M', 'N', 'S', 'Z'])
+    
+    def test_dfs(self):
+        g = Graph()
+        g.add_edge(0,1)
+        g.add_edge(0,2)
+        g.add_edge(1,2)
+        g.add_edge(2,0)
+        g.add_edge(2,3)
+        g.add_edge(3,3)
+        depth_first_search_traversal(2, g.graph)
+                
+        g = Graph()
+        g.add_edge('a','b')
+        g.add_edge('a','c')
+        g.add_edge('b','c')
+        g.add_edge('c','a')
+        g.add_edge('c','d')
+        g.add_edge('d','d')
+        depth_first_search_traversal('c', g.graph)
+
+
+    def test_bfs(self):
+        g = Graph()
+        g.add_edge(0,1)
+        g.add_edge(0,2)
+        g.add_edge(1,2)
+        g.add_edge(2,0)
+        g.add_edge(2,3)
+        g.add_edge(3,3)
+        breadth_first_search(g.graph, 2)
+                
+        g = Graph()
+        g.add_edge('a','b')
+        g.add_edge('a','c')
+        g.add_edge('b','c')
+        g.add_edge('c','a')
+        g.add_edge('c','d')
+        g.add_edge('d','d')
+        breadth_first_search(g.graph, 'c')
+    
+    def test_bfs_tree(self):
+        node = TreeNode(0, None, None)
+        node.left = TreeNode(1, TreeNode(3, None, None), TreeNode(4, None, None))
+        node.right = TreeNode(2, TreeNode(5, None, None), TreeNode(6, None, None))
+        bfs(node)
+    
+    def test_dfs_tree(self):
+        node = TreeNode(0, None, None)
+        node.left = TreeNode(1, TreeNode(3, None, None), TreeNode(4, None, None))
+        node.right = TreeNode(2, TreeNode(5, None, None), TreeNode(6, None, None))
+        dfs(node)
+    
+    def test_max_heap(self):
+        arr = [100, 19, 36, 17,3,2,7, 25,1]
+        heapsort(arr, "max")
+        arr = [100, 19, 36, 17,3,2,7, 25,1]
+        heapsort(arr, "min")
+        arr = [ 12, 11, 13, 5, 6, 7] 
+        heapsort(arr, "max")
+        arr = [ 12, 11, 13, 5, 6, 7] 
+        heapsort(arr, "min")
